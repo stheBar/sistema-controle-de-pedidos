@@ -8,7 +8,7 @@ import lombok.Data;
 @Table(name = "usuario")
 @Data
 @Schema(description = "Entidade que representa um usuário do sistema (ex: atendente, gerente)")
-public class Usuario {
+public class    Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
