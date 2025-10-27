@@ -1,0 +1,728 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1718919659119
+  modified: 1718919659119
+  description: ""
+collection:
+  - name: Produto
+    meta:
+      id: fld_0e4510ec35ad4b5582a1fd6e361a8271
+      created: 1760925397545
+      modified: 1760925397545
+      sortKey: -1
+      description: CRUD de produtos
+    children:
+      - url: "{{ api }}/produto"
+        name: Listar Produtos
+        meta:
+          id: req_00586dcb20e048faba18f12b0f366746
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: GET
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/produto/{{ produto_id }}"
+        name: Excluir Produto
+        meta:
+          id: req_0d060d239576403db5be91565a286e1f
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: DELETE
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/produto"
+        name: Cadastrar Produto
+        meta:
+          id: req_336a03824eb84feba724fb22da79b3d0
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "nome": "X-Burger Duplo com Bacon",
+              "descricao": "Dois hambúrgueres 150g, queijo cheddar, bacon crocante e pão brioche.",
+              "preco": 32.5,
+              "disponivel": true,
+              "produtoCategoria": "COMIDA"
+            }
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/produto/{{ produto_id }}"
+        name: Buscar Produto por ID
+        meta:
+          id: req_3c20d0c76b72417a910f7dd3b437d4c7
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: GET
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/produto"
+        name: Atualizar Produto
+        meta:
+          id: req_d670ca80cd2a4dc4b64146454755f729
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": "{{ produto_id }}",
+              "nome": "Refrigerante Lata 350ml",
+              "descricao": "Refrigerante cola",
+              "preco": 8.0,
+              "disponivel": true,
+              "produtoCategoria": "BEBIDA"
+            }
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Mesa
+    meta:
+      id: fld_7a928534be56448aaf6d33615fb9af86
+      created: 1760925397545
+      modified: 1760925397545
+      sortKey: -1
+      description: CRUD de mesas
+    children:
+      - url: "{{ api }}/mesa"
+        name: Listar Mesas
+        meta:
+          id: req_63ead10cef6b49ed8e0a7bac54fcc677
+          created: 1760925397545
+          modified: 1760932044021
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: GET
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+            disabled: false
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/mesa/{{ mesa_id }}"
+        name: Excluir Mesa
+        meta:
+          id: req_70bc4400bb6e4a269cf56a03aa5c2a0e
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: DELETE
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/mesa"
+        name: Atualizar Mesa
+        meta:
+          id: req_bb18cd95665d486ba57e28b923f0b579
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": "{{ mesa_id }}",
+              "numero": 10,
+              "disponivel": false
+            }
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/mesa/{{ mesa_id }}"
+        name: Buscar Mesa por ID
+        meta:
+          id: req_be0343b0131d44ee87ba9005519be70c
+          created: 1760925397545
+          modified: 1760930270951
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: GET
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/mesa"
+        name: Cadastrar Mesa
+        meta:
+          id: req_fd91507819534601aaae4c95a4b79c2e
+          created: 1760925397545
+          modified: 1760935619625
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "numero": 10,
+              "disponivel": true
+            }
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Pedido
+    meta:
+      id: fld_8fd7e06c7c0c48748de8e28c8e57b005
+      created: 1760925397545
+      modified: 1760925397545
+      sortKey: -1
+      description: Operações de pedidos
+    children:
+      - url: "{{ api }}/pedido"
+        name: Criar Pedido
+        meta:
+          id: req_0152b7caee4a4ad4a90fc60432426291
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "conta": {
+                "id": "{{ conta_id }}"
+              },
+              "dataHoraPedido": "2025-10-19T12:05:00",
+              "pedidoStatus": "PENDENTE",
+              "itens": [
+                {
+                  "produto": {
+                    "id": "{{ produto_id }}"
+                  },
+                  "precoUnitario": 32.5,
+                  "quantidade": 2,
+                  "observacao": "sem cebola"
+                },
+                {
+                  "produto": {
+                    "id": 2
+                  },
+                  "precoUnitario": 8.0,
+                  "quantidade": 2
+                }
+              ]
+            }
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/pedido"
+        name: Listar Pedidos de uma Mesa
+        meta:
+          id: req_351f4487bdef413186ec43b06f411673
+          created: 1760925397545
+          modified: 1760931185429
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: GET
+        parameters:
+          - id: prm_85aeebe264944
+            name: idMesa
+            value: "{{ mesa_id }}"
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/pedido"
+        name: Deletar Pedido (por corpo)
+        meta:
+          id: req_fac31ef5408b421cb42466571ae9e3e3
+          created: 1760925397545
+          modified: 1760925397545
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "id": "{{ pedido_id }}"
+            }
+        headers:
+          - id: hdr_4480ba7d30274
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_636a8fcee3b04
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Auth
+    meta:
+      id: fld_a16b09d7f2f14eeabc5dd2291abf11a3
+      created: 1760925397545
+      modified: 1760925397545
+      sortKey: -1
+      description: Registro e login. Use `{{ jwt_token }}` nas demais rotas.
+    children:
+      - url: "{{ api }}/auth/login"
+        name: Login
+        meta:
+          id: req_e7fec518dcea4d12860d2bb0166f7d41
+          created: 1760925397545
+          modified: 1761417743989
+          isPrivate: false
+          description: Copie o `token` da resposta para Environment → `jwt_token`.
+          sortKey: -1
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "garcom2@example.com",
+              "senha": "123456"
+            }
+        headers:
+          - id: hdr_84b8f9f432b74
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/auth/register"
+        name: Register
+        meta:
+          id: req_ed811592c1bd47ae912e29bdf6c0f17a
+          created: 1760925397545
+          modified: 1760930981543
+          isPrivate: false
+          description: ""
+          sortKey: -1
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "nome": "Tiago",
+              "email": "garcom2@example.com",
+              "senha": "123456",
+              "usuarioTipo": "ADMIN"
+            }
+        headers:
+          - id: hdr_1b86eb4aa0144
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Conta
+    meta:
+      id: fld_e78742d507724862a0688402bc93afad
+      created: 1760925397545
+      modified: 1760925397545
+      sortKey: -1
+      description: Operações de conta (raiz)
+    children:
+      - url: "{{ api }}/conta"
+        name: Criar Conta
+        meta:
+          id: req_00d24b3fa722427595b31a4c6e5c1f59
+          created: 1760928718173
+          modified: 1761511281590
+          isPrivate: false
+          description: POST /conta
+          sortKey: -1
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "mesaId": 1,
+             "contaStatus": "ABERTA",
+              "dataAbertura": "2025-10-19T12:00:00",
+              "cpfTitular": "123.456.789-00",
+              "nomeTitular": "Tiago Tonon"
+            }
+        headers:
+          - id: hdr_1760928718.173744_auth
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_1760928718.173747_ct
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/conta/{{ conta_id }}"
+        name: Deletar Conta
+        meta:
+          id: req_14f26961db554b85a088ba9555155630
+          created: 1760928718173
+          modified: 1760928718173
+          isPrivate: false
+          description: DELETE /conta/{id}
+          sortKey: -1
+        method: DELETE
+        headers:
+          - id: hdr_1760928718.173906_auth
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_1760928718.173911_ct
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/conta/{{ conta_id }}"
+        name: Buscar Conta por ID
+        meta:
+          id: req_fe773634889f40109e99ff4ab8bafb7b
+          created: 1760928718173
+          modified: 1760931252907
+          isPrivate: false
+          description: GET /conta/{id}
+          sortKey: -1
+        method: GET
+        headers:
+          - id: hdr_1760928718.173581_auth
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_1760928718.173589_ct
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/conta/{{ conta_id }}/pagar"
+        name: Pagar Conta
+        meta:
+          id: req_13b6aff5276e4f55be0a56d9abff6f1c
+          created: 1760928718174
+          modified: 1760936923568
+          isPrivate: false
+          description: PUT /conta/{id}/pagar
+          sortKey: -1
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "formaPagamento": "DINHEIRO"
+            }
+        headers:
+          - id: hdr_1760928718.174233_auth
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_1760928718.174235_ct
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/conta/{{ conta_id }}/pedir"
+        name: Pedir Conta
+        meta:
+          id: req_88aba548a30749d69ad0a8caaf79d9f4
+          created: 1760928718174
+          modified: 1760936530165
+          isPrivate: false
+          description: PUT /conta/{id}/pedir
+          sortKey: -1
+        method: PUT
+        headers:
+          - id: hdr_1760928718.17409_auth
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_1760928718.174093_ct
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ api }}/conta/{{ conta_id }}/pedido"
+        name: Criar Pedido na Conta
+        meta:
+          id: req_f89cf787d1804aa083fe49c0863c6333
+          created: 1760928718174
+          modified: 1761511322311
+          isPrivate: false
+          description: POST /conta/{id}/pedido
+          sortKey: -1
+        method: POST
+        body:
+          mimeType: application/json
+          text: |
+            {
+              "itens": [
+                {
+                  "produtoId": 1,
+                  "quantidade": 1,
+                  "observacao": "sem cebola"
+                },
+                {
+                  "produtoId": 1,
+                  "quantidade": 1
+                }
+              ]
+            }
+        headers:
+          - id: hdr_1760928718.174353_auth
+            name: Authorization
+            value: Bearer {{ jwt_token }}
+          - id: hdr_1760928718.174355_ct
+            name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: restaurante
+    meta:
+      id: fld_d6b4f2b7e2e5446581383c8c862f4423
+      created: 1760928371897
+      modified: 1760928371897
+      sortKey: -1760928371897
+      description: ""
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1718919674414
+    modified: 1758422695347
+  cookies:
+    - key: JSESSIONID
+      value: 2AEDC10B209FB876233D4D87FFDB197A
+      domain: localhost
+      path: /sistema-controle-pedidos
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-09-21T02:44:55.346Z
+      lastAccessed: 2025-09-21T02:44:55.346Z
+      id: 5445c585-9b15-4dbb-94f4-b2948ba4f132
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1718919674411
+    modified: 1761528094952
+    isPrivate: false
+  data:
+    base_url: http://localhost:8082
+    context_path: /sistema-controle-pedidos
+    api: http://localhost:8082/sistema-controle-pedidos
+    jwt_token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnYXJjb20yQGV4YW1wbGUuY29tIiwibm9tZSI6IlRpYWdvIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1aWQiOjEsImlhdCI6MTc2MTUyODA1OCwiZXhwIjoxNzYxNTMxNjU4fQ.BIFozaJ_0SoaK-jdJWoIwrtm7MnC_s7b2o81aC1h4yc
+    produto_id: 1
+    mesa_id: 1
+    conta_id: 4
+    pedido_id: 1
