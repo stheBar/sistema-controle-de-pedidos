@@ -12,6 +12,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -20,6 +21,21 @@ import java.util.regex.Pattern;
 
 @RestControllerAdvice
 public class TratadorDeErros {
+
+  @ExceptionHandler(ResponseStatusException.class)
+  public ResponseEntity<ApiError> tratarResponseStatus(ResponseStatusException ex, HttpServletRequest req) {
+    HttpStatus status = ex.getStatusCode() instanceof HttpStatus http ? http : HttpStatus.BAD_REQUEST;
+    String mensagem = ex.getReason() != null ? ex.getReason() : status.getReasonPhrase();
+
+    ApiError body = ApiError.of(
+            status.value(),
+            status.name(),
+            mensagem,
+            req.getRequestURI(),
+            null
+    );
+    return ResponseEntity.status(status).body(body);
+  }
 
   @ExceptionHandler(DataIntegrityViolationException.class)
   public ResponseEntity<ApiError> onDataIntegrity(DataIntegrityViolationException ex, HttpServletRequest req) {
@@ -57,7 +73,6 @@ public class TratadorDeErros {
     return ResponseEntity.badRequest().body(body);
   }
 
-
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
   public ResponseEntity<ApiError> tratarErro400TipoParametro(MethodArgumentTypeMismatchException ex, HttpServletRequest req) {
     String paramName = ex.getName();
@@ -74,7 +89,6 @@ public class TratadorDeErros {
     );
     return ResponseEntity.badRequest().body(body);
   }
-
 
   @ExceptionHandler(NoSuchElementException.class)
   public ResponseEntity<ApiError> tratarErro404(NoSuchElementException ex, HttpServletRequest req) {
@@ -114,9 +128,7 @@ public class TratadorDeErros {
 
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ApiError> tratarErro500(Exception ex, HttpServletRequest req) {
-
     ex.printStackTrace();
-
     ApiError body = ApiError.of(
             HttpStatus.INTERNAL_SERVER_ERROR.value(),
             "INTERNAL_SERVER_ERROR",
@@ -127,6 +139,7 @@ public class TratadorDeErros {
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
   }
 
+  // ---------- Métodos utilitários ----------
   private static Throwable getRootCause(Throwable t) {
     Throwable c = t;
     while (c.getCause() != null) c = c.getCause();
