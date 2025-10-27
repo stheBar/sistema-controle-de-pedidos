@@ -13,7 +13,7 @@ public class ProdutoMapper {
             p.getDescricao(),
             p.getPreco(),
             p.getDisponivel(),
-            p.getProdutoCategoria() != null ? p.getProdutoCategoria().name() : null
+            p.getProdutoCategoria() != null ? p.getProdutoCategoria() : null
         );
     }
 
@@ -25,6 +25,7 @@ public class ProdutoMapper {
         p.setDescricao(dto.descricao());
         p.setPreco(dto.preco());
         p.setDisponivel(dto.disponivel());
+        p.setProdutoCategoria(dto.categoria());
         return p;
     }
 }
