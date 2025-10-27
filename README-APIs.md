@@ -31,3 +31,5 @@ jwt.expiration = 3600000 (ms) -> 1h
 
 ## Diagrama ER
 
+![Diagrama ER do sistema](src/main/resources/docs/sistemaPedidosAtualizado.jpg)
+
