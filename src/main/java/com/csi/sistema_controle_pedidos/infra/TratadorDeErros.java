@@ -139,7 +139,7 @@ public class TratadorDeErros {
     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
   }
 
-  // ---------- Métodos utilitários ----------
+  //métodos úteis
   private static Throwable getRootCause(Throwable t) {
     Throwable c = t;
     while (c.getCause() != null) c = c.getCause();

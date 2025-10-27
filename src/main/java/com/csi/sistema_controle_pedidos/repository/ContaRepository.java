@@ -1,4 +1,3 @@
-// src/main/java/com/csi/sistema_controle_pedidos/repository/ContaRepository.java
 package com.csi.sistema_controle_pedidos.repository;
 
 import com.csi.sistema_controle_pedidos.model.Conta;

@@ -19,7 +19,9 @@ public class SecurityConfig {
 
     private final AppUserDetailsService userDetailsService;
     private final JwtAuthFilter jwtAuthFilter;
-//https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+
+    //https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+
 @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
@@ -54,7 +56,6 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // BCrypt gera hashes de 60 chars (cabem no campo senha VARCHAR(72))
         return new BCryptPasswordEncoder();
     }
 

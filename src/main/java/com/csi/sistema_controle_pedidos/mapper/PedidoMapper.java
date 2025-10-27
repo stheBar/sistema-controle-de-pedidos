@@ -1,4 +1,3 @@
-// src/main/java/com/csi/sistema_controle_pedidos/mapper/PedidoMapper.java
 package com.csi.sistema_controle_pedidos.mapper;
 
 import com.csi.sistema_controle_pedidos.dto.*;
@@ -71,7 +70,6 @@ public final class PedidoMapper {
                 .filter(Objects::nonNull)
                 .map(PedidoMapper::toItemPedidoDTO)
                 .collect(Collectors.toList());
-        // em Java 16+: return itens.stream().map(PedidoMapper::toItemPedidoDTO).toList();
     }
 
     public static ProdutoResumoDTO toProdutoResumoDTO(Produto p) {

@@ -1,4 +1,3 @@
-// src/main/java/com/csi/sistema_controle_pedidos/api/ApiError.java
 package com.csi.sistema_controle_pedidos.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
