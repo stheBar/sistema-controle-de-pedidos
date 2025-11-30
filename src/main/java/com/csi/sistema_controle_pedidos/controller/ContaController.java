@@ -2,6 +2,7 @@ package com.csi.sistema_controle_pedidos.controller;
 
 import com.csi.sistema_controle_pedidos.dto.*;
 import com.csi.sistema_controle_pedidos.mapper.ContaMapper;
+import com.csi.sistema_controle_pedidos.model.ContaStatus;
 import com.csi.sistema_controle_pedidos.model.FormaPagamento;
 
 import com.csi.sistema_controle_pedidos.infra.security.AppUserDetails;
@@ -19,6 +20,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/conta")
 @Tag(name = "Contas", description = "Operações relacionadas ao gerenciamento de contas")
@@ -28,6 +31,22 @@ public class ContaController {
 
     public ContaController(ContaService contaService) {
         this.contaService = contaService;
+    }
+
+    @Operation(summary = "Listar contas", description = "Lista contas, podendo filtrar por status (ABERTA, PENDENTE, FECHADA).")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista retornada com sucesso",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ContaResponseDTO.class)))
+    })
+    @GetMapping
+    public List<ContaResponseDTO> listarContas(
+            @RequestParam(name = "status", required = false) ContaStatus status
+    ) {
+        return contaService.listarContas(status)
+                .stream()
+                .map(ContaMapper::toDto)
+                .toList();
     }
 
     @Operation(summary = "Mostrar detalhes de uma conta", description = "Busca e retorna os detalhes de uma conta específica pelo seu ID.")
@@ -120,4 +139,21 @@ public class ContaController {
     }
 
     public record PagamentoRequest(@NotNull FormaPagamento formaPagamento) {}
+
+    @GetMapping("/mesa/{idMesa}/aberta")
+    public ContaResumoDTO buscarContaAbertaDaMesa(@PathVariable long idMesa) {
+        var conta = contaService.buscarContaAbertaDaMesa(idMesa);
+
+        return new ContaResumoDTO(
+                conta.getIdConta(),
+                conta.getCpf_titular(),
+                conta.getNome_titular(),
+                new MesaResumoDTO(
+                        conta.getMesa().getId(),
+                        conta.getMesa().getNumero(),
+                        conta.getMesa().getDisponivel()
+                )
+        );
+    }
+
 }

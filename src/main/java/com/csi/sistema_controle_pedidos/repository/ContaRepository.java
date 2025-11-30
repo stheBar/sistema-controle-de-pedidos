@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
 
 public interface ContaRepository extends JpaRepository<Conta, Long> {
 
@@ -15,4 +17,8 @@ public interface ContaRepository extends JpaRepository<Conta, Long> {
     @Query("select coalesce(sum(i.precoUnitario * i.quantidade), 0) " +
             "from Pedido p join p.itens i where p.conta.idConta = :contaId")
     BigDecimal totalByContaId(@Param("contaId") Long contaId);
+    List<Conta> findByContaStatus(ContaStatus contaStatus);
+
+    Optional<Conta> findByMesaIdAndContaStatus(Long idMesa, ContaStatus contaStatus);
+
 }

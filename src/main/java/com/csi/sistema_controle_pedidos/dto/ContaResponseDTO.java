@@ -10,5 +10,7 @@ public record ContaResponseDTO(
         LocalDateTime dataAbertura,
         LocalDateTime dataFechamento,
         String formaPagamento,
+        String cpfTitular,
+        String nomeTitular,
         MesaResumoDTO mesa
 ) {}

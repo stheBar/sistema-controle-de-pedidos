@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class ContaService {
@@ -33,6 +34,13 @@ public class ContaService {
         this.pedidoRepository = pedidoRepository;
         this.itemPedidoRepository = itemPedidoRepository;
         this.produtoRepository = produtoRepository;
+    }
+
+    public List<Conta> listarContas(ContaStatus status) {
+        if (status == null) {
+            return contaRepository.findAll();
+        }
+        return contaRepository.findByContaStatus(status);
     }
 
     public Conta criarConta(Conta conta) {
@@ -96,6 +104,16 @@ public class ContaService {
         if (c.getContaStatus() == ContaStatus.FECHADA) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Conta já está FECHADA");
         }
+
+        List<PedidoStatus> statusPendentes = List.of(PedidoStatus.PENDENTE, PedidoStatus.EM_PREPARO);
+
+        long pedidosNaoFinalizados = pedidoRepository.countByContaIdContaAndPedidoStatusIn(id, statusPendentes);
+
+        if (pedidosNaoFinalizados > 0) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "Não é possível pagar a conta. " +
+                            "Ainda existem " + pedidosNaoFinalizados + " pedido(s) com status PENDENTE ou EM PREPARO.");
+        }
         BigDecimal total = safeTotal(id);
         c.setValorTotal(total);
         c.setFormaPagamento(formaPagamento);
@@ -144,4 +162,9 @@ public class ContaService {
         BigDecimal total = contaRepository.totalByContaId(contaId);
         return total != null ? total : BigDecimal.ZERO;
     }
+    public Conta buscarContaAbertaDaMesa(long idMesa) {
+        return contaRepository.findByMesaIdAndContaStatus(idMesa, ContaStatus.ABERTA)
+                .orElseThrow(() -> new RuntimeException("Mesa não possui conta aberta."));
+    }
+
 }

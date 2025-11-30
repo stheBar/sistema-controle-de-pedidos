@@ -40,6 +40,8 @@ public final class PedidoMapper {
         if (c == null) return null;
         return new ContaResumoDTO(
                 c.getIdConta(),
+                c.getCpf_titular(),
+                c.getNome_titular(),
                 toMesaResumoDTO(c.getMesa())
         );
     }
